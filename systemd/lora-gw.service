@@ -1,0 +1,19 @@
+[Unit]
+Description=Run WM1302 LoRaWAN Gateway
+After=network.target
+
+#StartLimitIntervalSec=120
+#StartLimitBurst=5
+
+[Service]
+Restart=on-failure
+RestartSec=10s
+#ExecStart=bash -c "cd <Path to lora_pkt_fwd> && ./lora_pkt_fwd -c global_conf.json.sx1250.AS923"
+ExecStart=bash -c "cd home/admin/sx1302_hal/packet_forwarder && ./lora_pkt_fwd -c global_conf.json.sx1250.AS923"
+
+# Useful during debugging; remove it once the service is working
+StandardOutput=console
+StandardError=console
+
+[Install]
+WantedBy=multi-user.target
